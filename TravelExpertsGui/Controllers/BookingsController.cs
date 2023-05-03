@@ -34,7 +34,8 @@ namespace TravelExpertsGui.Controllers
                 {
                     if(c.PackageId != null) 
                     {
-                        totalbookingCost = calCost(c);
+                        totalbookingCost = CalCost(c);
+                        c.Package.PkgBasePrice += (decimal)c.Package.PkgAgencyCommission; //Price the customer sees on their booking page; Customer does not need to see commission
                     }
                 });
                 ViewBag.TotalCost = totalbookingCost.ToString("c");
@@ -51,7 +52,7 @@ namespace TravelExpertsGui.Controllers
         /// <param name="c">Booking object</param>
         /// <returns>returns total booking cost as a decimal</returns>
 
-        private decimal calCost(Booking c)
+        private decimal CalCost(Booking c)
         {
              return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount)) + (decimal)(c.Package.PkgAgencyCommission * Convert.ToDecimal(c.TravelerCount));
         }
@@ -84,9 +85,11 @@ namespace TravelExpertsGui.Controllers
         {
             if(User.Identity.Name != null)
             {
+                int bookingNumber = 200;
                 int custId = CustomerManager.FindCustomer(User.Identity.Name, _context).CustomerId;
                 List<TripType> tripTypes = TripTypeManager.GetTripTypes(_context);
                 var list = new SelectList(tripTypes, "TripTypeId", "Ttname").ToList();
+                ViewBag.BookingNum = custId +  ++bookingNumber + User.Identity.Name;
                 ViewBag.CustomerId = custId;
                 ViewBag.PackageId = Id;
                 ViewBag.TripType = list;
@@ -97,6 +100,7 @@ namespace TravelExpertsGui.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+        
 
         // POST: Bookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
