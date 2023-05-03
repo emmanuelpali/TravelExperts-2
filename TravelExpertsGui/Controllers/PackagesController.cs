@@ -41,7 +41,7 @@ namespace TravelExpertsGui.Controllers
         /// Calculates Price by adding Package base price with agency commission
         /// </summary>
         /// <param name="p">Package object</param>
-        /// <returns>returns Price as decimal</returns>
+        /// <returns>returns total booking cost as a decimal</returns>
 
         private static decimal CalCost(Package p)
         {
@@ -61,7 +61,7 @@ namespace TravelExpertsGui.Controllers
                 }
             });
             ViewBag.TotalPackageCost = totalPackageCost.ToString("c");
-            return _context.Packages != null ?
+            return _context.Packages != null ? 
                           View(packages) :
                           Problem("Entity set 'TravelExpertsContext.Packages'  is null.");
         }

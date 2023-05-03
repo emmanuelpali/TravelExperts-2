@@ -14,7 +14,6 @@ namespace TravelExpertsGui.Controllers
     public class BookingsController : Controller
     {
         private readonly TravelExpertsContext _context;
-
         public BookingsController(TravelExpertsContext context)
         {
             _context = context;
@@ -30,13 +29,14 @@ namespace TravelExpertsGui.Controllers
                 var travelExpertsContext = _context.Bookings.Include(b => b.CustomerId == customerId).Include(b => b.Package).Include(b => b.TripType);
                 List<Booking> custBooking = null;
                 custBooking = _context.Bookings.Include(p => p.Package).Include(t => t.TripType).Where(c => c.CustomerId == customerId).ToList();
-                custBooking.ForEach(c =>
+                foreach (var c in custBooking)
                 {
-                    if(c.PackageId != null) 
+                    if (c.PackageId != null)
                     {
-                        totalbookingCost = CalCost(c);
+                        totalbookingCost += CalTotalCost(c);
+                        //c.Package.PkgBasePrice += (decimal)c.Package.PkgAgencyCommission;
                     }
-                });
+                };             
                 ViewBag.TotalCost = totalbookingCost.ToString("c");
                 return View(custBooking);
             }
@@ -51,11 +51,14 @@ namespace TravelExpertsGui.Controllers
         /// <param name="c">Booking object</param>
         /// <returns>returns total booking cost as a decimal</returns>
 
-        private decimal CalCost(Booking c)
+        private decimal CalTotalCost(Booking c)
         {
              return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount)) + (decimal)(c.Package.PkgAgencyCommission * Convert.ToDecimal(c.TravelerCount));
         }
-
+        private decimal CalCost(Package p)
+        {
+            return p.PkgBasePrice + (decimal)(p.PkgAgencyCommission);
+        }
 
 
         // GET: Bookings/Details/5
@@ -84,11 +87,11 @@ namespace TravelExpertsGui.Controllers
         {
             if(User.Identity.Name != null)
             {
-                int bookingNumber = 200;
+                
                 int custId = CustomerManager.FindCustomer(User.Identity.Name, _context).CustomerId;
                 List<TripType> tripTypes = TripTypeManager.GetTripTypes(_context);
                 var list = new SelectList(tripTypes, "TripTypeId", "Ttname").ToList();
-                ViewBag.BookingNum = custId +  (++bookingNumber) + User.Identity.Name;
+                ViewBag.BookingNum = custId +  DateTime.Now.Second + User.Identity.Name;
                 ViewBag.CustomerId = custId;
                 ViewBag.PackageId = Id;
                 ViewBag.TripType = list;

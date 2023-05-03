@@ -17,7 +17,7 @@ namespace TravelExpertsData
         [Key]
         public int PackageId { get; set; }
         [StringLength(50)]
-        [Display(Name = "Package")]
+        [Display(Name = "Package Name")]
         public string PkgName { get; set; } = null!;
         [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
         [Display(Name = "Start Date")]
