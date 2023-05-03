@@ -89,7 +89,7 @@ namespace TravelExpertsGui.Controllers
                 int custId = CustomerManager.FindCustomer(User.Identity.Name, _context).CustomerId;
                 List<TripType> tripTypes = TripTypeManager.GetTripTypes(_context);
                 var list = new SelectList(tripTypes, "TripTypeId", "Ttname").ToList();
-                ViewBag.BookingNum = custId +  ++bookingNumber + User.Identity.Name;
+                ViewBag.BookingNum = custId +  (++bookingNumber) + User.Identity.Name;
                 ViewBag.CustomerId = custId;
                 ViewBag.PackageId = Id;
                 ViewBag.TripType = list;
