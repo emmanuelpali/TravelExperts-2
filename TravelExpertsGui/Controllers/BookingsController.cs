@@ -85,9 +85,11 @@ namespace TravelExpertsGui.Controllers
         {
             if(User.Identity.Name != null)
             {
+                int bookingNumber = 200;
                 int custId = CustomerManager.FindCustomer(User.Identity.Name, _context).CustomerId;
                 List<TripType> tripTypes = TripTypeManager.GetTripTypes(_context);
                 var list = new SelectList(tripTypes, "TripTypeId", "Ttname").ToList();
+                ViewBag.BookingNum = custId +  ++bookingNumber + User.Identity.Name;
                 ViewBag.CustomerId = custId;
                 ViewBag.PackageId = Id;
                 ViewBag.TripType = list;
@@ -98,6 +100,7 @@ namespace TravelExpertsGui.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+        
 
         // POST: Bookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
