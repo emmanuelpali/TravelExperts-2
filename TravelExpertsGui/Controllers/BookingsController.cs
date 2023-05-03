@@ -35,7 +35,6 @@ namespace TravelExpertsGui.Controllers
                     if(c.PackageId != null) 
                     {
                         totalbookingCost = CalCost(c);
-                        c.Package.PkgBasePrice += (decimal)c.Package.PkgAgencyCommission; //Price the customer sees on their booking page; Customer does not need to see commission
                     }
                 });
                 ViewBag.TotalCost = totalbookingCost.ToString("c");
