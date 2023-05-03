@@ -34,7 +34,8 @@ namespace TravelExpertsGui.Controllers
                 {
                     if(c.PackageId != null) 
                     {
-                        totalbookingCost = calCost(c);
+                        totalbookingCost = CalCost(c);
+                        c.Package.PkgBasePrice += (decimal)c.Package.PkgAgencyCommission; //Price the customer sees on their booking page; Customer does not need to see commission
                     }
                 });
                 ViewBag.TotalCost = totalbookingCost.ToString("c");
@@ -51,7 +52,7 @@ namespace TravelExpertsGui.Controllers
         /// <param name="c">Booking object</param>
         /// <returns>returns total booking cost as a decimal</returns>
 
-        private decimal calCost(Booking c)
+        private decimal CalCost(Booking c)
         {
              return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount)) + (decimal)(c.Package.PkgAgencyCommission * Convert.ToDecimal(c.TravelerCount));
         }

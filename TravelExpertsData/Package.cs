@@ -17,16 +17,24 @@ namespace TravelExpertsData
         [Key]
         public int PackageId { get; set; }
         [StringLength(50)]
+        [Display(Name = "Package")]
         public string PkgName { get; set; } = null!;
+        [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
+        [Display(Name = "Start Date")]
         [Column(TypeName = "datetime")]
         public DateTime? PkgStartDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MMMM dd, yyyy}")]
+        [Display(Name = "End Date")]
         [Column(TypeName = "datetime")]
         public DateTime? PkgEndDate { get; set; }
         [StringLength(50)]
+        [Display(Name = "Discription")]
         public string? PkgDesc { get; set; }
         [Column(TypeName = "money")]
+        [Display(Name = "Package Price")]
         public decimal PkgBasePrice { get; set; }
         [Column(TypeName = "money")]
+        [Display(Name = "Agency Commission")]
         public decimal? PkgAgencyCommission { get; set; }
 
         [InverseProperty("Package")]

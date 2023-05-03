@@ -23,17 +23,47 @@ namespace TravelExpertsGui.Controllers
         // GET: Packages
         public async Task<IActionResult> Index()
         {
-              return _context.Packages != null ? 
-                          View(await _context.Packages.ToListAsync()) :
+            List<Package> packages = await _context.Packages.ToListAsync();
+            decimal totalPackageCost = 0;
+            packages.ForEach(p =>
+            {
+                if (p.PackageId != null)
+                {
+                    totalPackageCost = CalCost(p);
+                }
+            });
+            ViewBag.TotalPackageCost = totalPackageCost.ToString("c");
+            return _context.Packages != null ? 
+                          View(packages) :
                           Problem("Entity set 'TravelExpertsContext.Packages'  is null.");
+        }
+        /// <summary>
+        /// Calculates Price by adding Package base price with agency commission
+        /// </summary>
+        /// <param name="p">Package object</param>
+        /// <returns>returns Price as decimal</returns>
+
+        private static decimal CalCost(Package p)
+        {
+            return (p.PkgBasePrice += (decimal)(p.PkgAgencyCommission ));
         }
 
         [Authorize]
         public async Task<IActionResult> BookPackage()
         {
+            List<Package> packages = await _context.Packages.ToListAsync();
+            decimal totalPackageCost = 0;
+            packages.ForEach(p =>
+            {
+                if (p.PackageId != null)
+                {
+                    totalPackageCost = CalCost(p);
+                }
+            });
+            ViewBag.TotalPackageCost = totalPackageCost.ToString("c");
             return _context.Packages != null ?
-                        View(await _context.Packages.ToListAsync()) :
-                        Problem("Entity set 'TravelExpertsContext.Packages'  is null.");
+                          View(packages) :
+                          Problem("Entity set 'TravelExpertsContext.Packages'  is null.");
         }
 
         // GET: Packages/Details/5

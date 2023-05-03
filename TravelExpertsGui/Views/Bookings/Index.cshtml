@@ -4,11 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>My Bookings</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -54,6 +52,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Package.PkgName)
             </td>
+                @*price is baseprice + commission*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Package.PkgBasePrice)
                 </td>
