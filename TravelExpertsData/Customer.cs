@@ -68,6 +68,12 @@ namespace TravelExpertsData
         [Required]
         [Unicode(false)]
         public string? Password { get; set; }
+        [Required(ErrorMessage = "Please confirm your password.")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        [StringLength(30)]
+        [Display(Name = "Confirm Password")]
+        [NotMapped]
+        public string ConfirmPassword { get; set; }
 
         [ForeignKey("AgentId")]
         [InverseProperty("Customers")]
