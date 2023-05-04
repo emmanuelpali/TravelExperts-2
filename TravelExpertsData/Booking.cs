@@ -24,6 +24,7 @@ namespace TravelExpertsData
         public DateTime? BookingDate { get; set; }
         [StringLength(50)]
         public string? BookingNo { get; set; }
+        [Display(Name = "Traveler Count?")]
         public double? TravelerCount { get; set; }
         public int? CustomerId { get; set; }
         [StringLength(1)]
