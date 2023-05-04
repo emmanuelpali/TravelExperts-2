@@ -4,9 +4,9 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>My Bookings</h1>
+<h1 class="text-center m-5">My Bookings</h1>
 
-
+<div class="container mb-3">
 <table class="table">
     <thead>
         <tr>
@@ -68,8 +68,10 @@
 }   
     </tbody>
 </table>
-<div class="row">
-    <div>Total Booking Cost</div>
-    <div class="col-md-5">@ViewBag.TotalCost</div>
-    <a asp-action="index" asp-controller="Packages">View Packages</a>
+    <div class="card text-center">
+        <h2>Total Booking Cost</h2>
+        <div class="p-3">@ViewBag.TotalCost</div>
+        
+    </div>
+        <a class="btn btn-outline-primary d-block" asp-action="BookPackage" asp-controller="Packages">Add Packages</a>
 </div>

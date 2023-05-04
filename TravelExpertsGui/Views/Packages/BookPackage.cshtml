@@ -4,54 +4,48 @@
     ViewData["Title"] = "Book A Package";
 }
 
-<h1>Choose from our exclusive packages</h1>
+<h1 class="text-center my-3">Choose from our exclusive packages</h1>
 
+<div class="row justify-content-center">
+    @foreach (var item in Model)
+    {
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PkgName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PkgStartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PkgEndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PkgDesc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PkgBasePrice)
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PkgName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PkgStartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PkgEndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PkgDesc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PkgBasePrice)
-            </td>
-            
-            <td>
-                <a asp-action="Create" asp-controller="Bookings" asp-route-id="@item.PackageId">Book</a> 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <div class="card  col-md-4 m-md-5 shadow" @*style="width: 18rem;"*@>
+            <h5 class="card-title">@Html.DisplayNameFor(modelItem => item.PkgName)</h5>
+            <p class="card-title">@Html.DisplayFor(modelItem => item.PkgName)</p>
+            @if (item.PackageId == 1)
+            {
+                <img class="card-img-top" src="~/images/carribean-newyear.jpg" alt="...">
+            }
+            @if (item.PackageId == 2)
+            {
+                <img class="card-img-top" src="~/images/polynesian-paradise.jpg" alt="...">
+            }
+            @if (item.PackageId == 3)
+            {
+                <img class="card-img-top" src="~/images/asian-expedition.jpg" alt="...">
+            }
+            @if (item.PackageId == 4)
+            {
+                <img class="card-img-top" src="~/images/european.jpg" alt="...">
+            }
+
+            <div class="card-body ">
+
+                <h5 class="card-text">@Html.DisplayNameFor(modelItem => item.PkgStartDate)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.PkgStartDate)</p>
+                <h5 class="card-text">@Html.DisplayNameFor(modelItem =>  item.PkgEndDate)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem =>  item.PkgEndDate)</p>
+                <h5 class="card-text">@Html.DisplayNameFor(modelItem =>  item.PkgDesc)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem =>  item.PkgDesc)</p>
+                <h5 class="card-text">@Html.DisplayNameFor(modelItem =>  item.PkgBasePrice)</h5>
+                <p class="card-text">@Html.DisplayFor(modelItem =>  item.PkgBasePrice)</p>
+
+            </div>
+            <p>
+                <a class="btn btn-outline-primary d-block" asp-action="Create" asp-controller="Bookings" asp-route-id="@item.PackageId">Book</a>
+
+            </p>
+        </div>
+    }
+</div>
