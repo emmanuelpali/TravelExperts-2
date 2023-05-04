@@ -61,27 +61,6 @@ namespace TravelExpertsGui.Controllers
         }
 
 
-        // GET: Bookings/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null || _context.Bookings == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var booking = await _context.Bookings
-        //        .Include(b => b.Customer)
-        //        .Include(b => b.Package)
-        //        .Include(b => b.TripType)
-        //        .FirstOrDefaultAsync(m => m.BookingId == id);
-        //    if (booking == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(booking);
-        //}
-
         // GET: Bookings/Create
         public IActionResult Create(int Id)
         {
@@ -123,7 +102,76 @@ namespace TravelExpertsGui.Controllers
             return View(booking);
         }
 
-      
+        // GET: Bookings/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Bookings == null)
+            {
+                return NotFound();
+            }
+
+            var booking = await _context.Bookings
+                .Include(b => b.Customer)
+                .Include(b => b.Package)
+                .Include(b => b.TripType)
+                .FirstOrDefaultAsync(m => m.BookingId == id);
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+            return View(booking);
+        }
+
+        // POST: Bookings/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            try
+            {
+                if (_context.Bookings == null)
+                {
+                    return Problem("Entity set 'TravelExpertsContext.Bookings'  is null.");
+                }
+                var booking = await _context.Bookings.FindAsync(id);
+                if (booking != null)
+                {
+                    _context.Bookings.Remove(booking);
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                TempData["Message"] = "Can't delete this booking. It is referenced in the database.";
+                TempData["IsError"] = true;
+            }
+
+            return View("index");
+        }
+
+        // GET: Bookings/Details/5
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null || _context.Bookings == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var booking = await _context.Bookings
+        //        .Include(b => b.Customer)
+        //        .Include(b => b.Package)
+        //        .Include(b => b.TripType)
+        //        .FirstOrDefaultAsync(m => m.BookingId == id);
+        //    if (booking == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(booking);
+        //}
 
         //// GET: Bookings/Edit/5
         //public async Task<IActionResult> Edit(int? id)
@@ -182,45 +230,7 @@ namespace TravelExpertsGui.Controllers
         //    return View(booking);
         //}
 
-        //// GET: Bookings/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null || _context.Bookings == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    var booking = await _context.Bookings
-        //        .Include(b => b.Customer)
-        //        .Include(b => b.Package)
-        //        .Include(b => b.TripType)
-        //        .FirstOrDefaultAsync(m => m.BookingId == id);
-        //    if (booking == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(booking);
-        //}
-
-        //// POST: Bookings/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    if (_context.Bookings == null)
-        //    {
-        //        return Problem("Entity set 'TravelExpertsContext.Bookings'  is null.");
-        //    }
-        //    var booking = await _context.Bookings.FindAsync(id);
-        //    if (booking != null)
-        //    {
-        //        _context.Bookings.Remove(booking);
-        //    }
-            
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
 
         //private bool BookingExists(int id)
         //{
