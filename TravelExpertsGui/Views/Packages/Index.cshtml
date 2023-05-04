@@ -10,8 +10,7 @@
 @foreach (var item in Model){
     
         <div class="card  col-md-4 m-md-5 shadow" @*style="width: 18rem;"*@>
-            <h5 class="card-title">@Html.DisplayNameFor(modelItem => item.PkgName)</h5>
-            <p class="card-title">@Html.DisplayFor(modelItem => item.PkgName)</p>
+            <h5 class="card-title my-2">@Html.DisplayFor(modelItem => item.PkgName)</h5>
             @if (item.PackageId == 1)
             {
                 <img class="card-img-top" src="~/images/carribean-newyear.jpg" alt="...">

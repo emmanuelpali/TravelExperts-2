@@ -8,7 +8,8 @@ using TravelExpertsData.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<TravelExpertsContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TravelExperts")));
+builder.Services.AddDbContext<TravelExpertsContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("TravelExpertsContext")));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
     AddCookie(options => {
         options.LoginPath = "/Account/Login";

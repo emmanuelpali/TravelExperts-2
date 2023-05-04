@@ -28,7 +28,7 @@ namespace TravelExpertsData
         [Column(TypeName = "datetime")]
         public DateTime? PkgEndDate { get; set; }
         [StringLength(50)]
-        [Display(Name = "Discription")]
+        [Display(Name = "Description")]
         public string? PkgDesc { get; set; }
         [Column(TypeName = "money")]
         [Display(Name = "Package Price")]
