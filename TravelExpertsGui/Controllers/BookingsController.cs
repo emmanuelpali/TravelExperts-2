@@ -55,10 +55,6 @@ namespace TravelExpertsGui.Controllers
         {
              return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount)) + (decimal)(c.Package.PkgAgencyCommission * Convert.ToDecimal(c.TravelerCount));
         }
-        private decimal CalCost(Package p)
-        {
-            return p.PkgBasePrice + (decimal)(p.PkgAgencyCommission);
-        }
 
 
         // GET: Bookings/Create
