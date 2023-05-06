@@ -53,7 +53,7 @@ namespace TravelExpertsGui.Controllers
 
         private decimal CalTotalCost(Booking c)
         {
-             return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount))  * Convert.ToDecimal(c.TravelerCount);
+             return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount));
         }
 
 
