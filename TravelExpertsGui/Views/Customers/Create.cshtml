@@ -10,7 +10,7 @@
 <div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly" class="form-group text-center m-5 col-md-4"></div>
             <div class="form-group">
                 <label asp-for="CustFirstName" class="control-label"></label>
                 <input asp-for="CustFirstName" class="form-control" />
@@ -64,7 +64,7 @@
             @*Agency ID is hidden here. since customer is booking online AgenId will always be 1*@
             <div class="form-group">
                 <label hidden asp-for="AgentId" class="control-label"></label>
-                <select hidden asp-for="AgentId" class ="form-control" asp-items="ViewBag.AgentId"></select>
+                <input hidden asp-for="AgentId" class ="form-control" value="@ViewBag.AgentId"></input>
             </div>
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>

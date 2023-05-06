@@ -40,19 +40,23 @@ namespace TravelExpertsData
         public string CustProv { get; set; } = null!;
         [StringLength(7)]
         [Required]
-        [Display(Name = "Postal Code")]
+        [RegularExpression(@"^([A-Z|a-z][0-9][A-Z|a-z])[ ]?([0-9][A-Z|a-z][0-9])$",
+                                ErrorMessage = "Not a valid postal code")]
+        [Display(Name = "Postal Code (A1A A1A)")]
         public string CustPostal { get; set; } = null!;
         [StringLength(25)]
         [Required]
         [Display(Name = "Country")]
         public string? CustCountry { get; set; }
-        [StringLength(20)]
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Phone")]
+        [Display(Name = "Phone (xxx-xxx-xxxx)")]
+        [Required(ErrorMessage = "You must provide a phone number")]
+        [RegularExpression(@"^([0-9]{3})-([0-9]{3})-([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [StringLength(15)]
         public string? CustHomePhone { get; set; }
-        [StringLength(20)]
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Business Phone")]
+        [Display(Name = "Business Phone (xxx-xxx-xxxx)")]
+        [Required(ErrorMessage = "You must provide a phone number")]
+        [RegularExpression(@"^([0-9]{3})-([0-9]{3})-([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+        [StringLength(15)]
         public string CustBusPhone { get; set; } = null!;
         [StringLength(50)]
         [Required]

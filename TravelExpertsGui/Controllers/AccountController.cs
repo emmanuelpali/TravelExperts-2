@@ -31,6 +31,8 @@ namespace TravelExpertsGui.Controllers
             Customer cus = CustomerManager.Authenticate(customer.Username, customer.Password, _context); // Authenticate user
             if (cus == null) // failed authentication
             {
+                TempData["Message"] = "Incorrect login details.";
+                TempData["IsError"] = true;
                 return View(); // stay on the login page
             }
             // usr != null   - authentication passed
@@ -52,7 +54,7 @@ namespace TravelExpertsGui.Controllers
             // if no return URL, go to the home page
             if (string.IsNullOrEmpty(TempData["ReturnUrl"].ToString()))
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("BookPackage", "Packages");
             }
             else
             {

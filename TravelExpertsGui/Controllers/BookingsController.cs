@@ -53,7 +53,7 @@ namespace TravelExpertsGui.Controllers
 
         private decimal CalTotalCost(Booking c)
         {
-             return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount)) + (decimal)(c.Package.PkgAgencyCommission * Convert.ToDecimal(c.TravelerCount));
+             return (c.Package.PkgBasePrice * Convert.ToDecimal(c.TravelerCount))  * Convert.ToDecimal(c.TravelerCount);
         }
 
 
@@ -66,7 +66,7 @@ namespace TravelExpertsGui.Controllers
                 int custId = CustomerManager.FindCustomer(User.Identity.Name, _context).CustomerId;
                 List<TripType> tripTypes = TripTypeManager.GetTripTypes(_context);
                 var list = new SelectList(tripTypes, "TripTypeId", "Ttname").ToList();
-                ViewBag.BookingNum = custId +  DateTime.Now.Second + User.Identity.Name;
+                ViewBag.BookingNum = custId * 100 +  DateTime.Now.Second + User.Identity.Name;
                 ViewBag.CustomerId = custId;
                 ViewBag.PackageId = Id;
                 ViewBag.TripType = list;
