@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TravelExpertsData;
-using TravelExpertsData.Data;
+using TravelExpertsGui.data;
+using TravelExpertsGui.Models;
 
 namespace TravelExpertsGui.Controllers
 {

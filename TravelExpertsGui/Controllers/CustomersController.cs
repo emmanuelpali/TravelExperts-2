@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TravelExpertsData;
-using TravelExpertsData.Data;
+using TravelExpertsGui.Models;
+using TravelExpertsGui.data;
 
 namespace TravelExpertsGui.Controllers
 {

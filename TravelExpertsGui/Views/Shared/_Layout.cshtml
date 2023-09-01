@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="~/TravelExpertsGui.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow p-0 mp-5">
-            <div class="container-fluid p-3">
-                <a class="navbar-brand d-block" asp-area="" asp-controller="Home" asp-action="Index"><div class="logo-container ms-4"><img src="~/images/travel.png" />Travel Experts</div></a>
+    <header class="header">
+        <nav class="navbar fixed-top shadow-lg navbar-expand-sm navbar-toggleable-sm navbar-light ">
+
+                <a class="navbar-brand d-block" asp-area="" asp-controller="Home" asp-action="Index"><div class="logo-container ms-4">Travel Experts</div></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
                         <partial name="_LoginPartial" />                        
                     </div>
                 </div>
-            </div>
+
         </nav>
     </header>
     <div class="container-fluid p-0">
@@ -38,7 +38,7 @@
         </main>
     </div>
 
-    <footer class="py-5" >
+    <footer class="py-5 " >
         <div class="container row">
             <div class="col-md-6 text-center justify-content-center">
                 &copy; @DateTime.Now.Year - Travel Experts

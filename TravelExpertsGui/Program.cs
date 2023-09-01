@@ -3,7 +3,7 @@
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using TravelExpertsData.Data;
+using TravelExpertsGui.data;
 
 var builder = WebApplication.CreateBuilder(args);
 

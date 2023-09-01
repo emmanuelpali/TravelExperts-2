@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using TravelExpertsData;
-using TravelExpertsData.Data;
+using TravelExpertsGui.data;
+using TravelExpertsGui.Models;
 
 namespace TravelExpertsGui.Controllers
 {

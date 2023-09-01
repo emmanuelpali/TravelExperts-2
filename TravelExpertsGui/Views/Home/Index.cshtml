@@ -3,9 +3,11 @@
 }
 
 <div class="landing justify-content-center row m-0">
-    <h1>Travel Experts</h1>
-  <div class="intro mb-5">
-        <h2 class="mb-3"><em>Click Sit-Back Experience</em></h2>
+    <div class="col-md-6 mt-5">
+        <h1>Expereince our unique blend of luxury and Adventure</h1>
+    </div>
+    <div class="intro col-md-6 mt-5">
+        <h2 class=""><em>Book your Experience</em></h2>
         @if(User.Identity.Name != null)
         {
             <a asp-action="BookPackage" asp-controller="Packages" class="btn btn-outline-light ">Book A Package</a>
@@ -14,5 +16,5 @@
         {
             <a asp-action="Index" asp-controller="Packages" class="btn btn-outline-light ">Book A Package</a>
         }
-    </div>
+  </div>
 </div>
